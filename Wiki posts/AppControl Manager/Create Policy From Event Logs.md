@@ -26,6 +26,8 @@ Only the following [event types](https://learn.microsoft.com/en-us/windows/secur
 
   * **Event ID `3089`:** This event contains signature information for files that were blocked or audit blocked by App Control. One of these events is created for each signature of a file.
 
+  * **Event ID `3114`:** This event contains only the hashes for files that were blocked by App Control due to [the Dynamic Code Security](https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/design/appcontrol-and-dotnet).
+
 * **AppLocker**:
 
   * **Event ID `8028`:** This event indicates that a script host, such as PowerShell, queried App Control about a file the script host was about to run. Since the policy was in audit mode, the script or MSI file should have run, but wouldn't have passed the App Control policy if it was enforced.

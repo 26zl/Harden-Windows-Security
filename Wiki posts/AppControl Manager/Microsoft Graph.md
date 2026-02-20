@@ -24,6 +24,17 @@ Use this button to cancel the sign-in process. This only works if you've already
 
 Here you can select the authentication context for the sign-in process. They are groups of permissions that the application will request from Microsoft Graph in order to perform certain operations.
 
+Available authentication contexts:
+* **Intune**: Requests permissions required to create, read, update, and delete device configuration policies, groups, and scripts (`Group.ReadWrite.All`, `DeviceManagementConfiguration.ReadWrite.All`, `DeviceManagementScripts.ReadWrite.All`).
+* **MDEAdvancedHunting**: Requests permissions required to retrieve Microsoft Defender for Endpoint Advanced Hunting queries (`ThreatHunting.Read.All`).
+
+### Azure Cloud Environment
+
+Here you can select the target Azure Cloud environment for your authentication session.
+
+* **Public**: The standard Microsoft Azure public cloud environment.
+* **US Government (GCC High)**: The US government cloud environment.
+
 <br>
 
 ## Signed In Accounts
@@ -36,10 +47,24 @@ After selecting an account from the list, you can remove it by clicking this but
 
 After selecting an account from the list, you can set it as the active account by clicking this button. This will make the selected account the default account for all operations that require Microsoft Graph access in the page you are currently on.
 
+The Signed In Accounts list displays the following details for each authenticated session to help you manage multiple logins:
+* Username
+* Tenant ID
+* Account Identifier
+* Permissions
+* Environment
+
 <br>
 
 ## Active Account
 
 This section shows you the details of the currently active account that will be used for all operations that require Microsoft Graph access in the page you are currently on.
+
+The displayed details for the active account include:
+* **Username**: The user principal name or email address of the authenticated account.
+* **Tenant ID**: The unique ID of the Microsoft Entra ID tenant.
+* **Account Identifier**: The unique home account identifier.
+* **Permissions**: The list of Graph API scopes granted during the sign-in process.
+* **Environment**: The Azure Cloud environment (Public or US Government) the account is authenticated against.
 
 <br>

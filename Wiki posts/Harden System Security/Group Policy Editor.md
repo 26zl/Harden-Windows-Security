@@ -8,11 +8,29 @@
 
 <br>
 
-The Group Policy Editor page enables you to retrieve the effective policies on the system. You can sort and search through this data via the available UI controls. You can also browse for `.POL` group policy files on your system or a shared network location in order to inspect it.
+The Group Policy Editor page enables you to retrieve the effective policies on the system. You can sort and search through this data via the available UI controls. You can also browse for `.POL` group policy files on your system or a shared network location in order to inspect it. Additionally, you can natively browse, load, and inspect `.JSON` policy files previously exported by the app.
 
 Since the [Harden System Security app](https://github.com/HotCakeX/Harden-Windows-Security/wiki/Harden-System-Security) can be set as the default handler of the `.POL` files, this page is also displayed when you double-click or tap on any `.POL` file in the File Explorer.
 
-You may remove any policy from a `.POL` file — whether a system `.POL` or one you opened in the app. All edits are correctly persisted back to the selected `.POL` file.
+You may remove any policy from a `.JSON` or `.POL` file, whether a system `.POL` or one you opened in the app. All edits are correctly persisted back to the selected `.POL` or `.JSON` file.
+
+## View Effective Machine and User Policies
+
+In addition to retrieving the system's effective machine policies, you can also specifically retrieve and view the effective Group Policies applied to the User. Modifying these system-level policies through the editor will automatically update the system policies and register the necessary Client-Side Extensions (CSE).
+
+## Edit Group Policy Values
+
+You can seamlessly edit the value of any loaded policy directly from the UI by right-clicking a policy and selecting **Edit**. The editor provides a rigorous, real-time input validation system tailored to the specific Registry Value Type of the policy:
+* **REG_DWORD & REG_QWORD**: Ensures the input is a valid 32-bit or 64-bit integer.
+* **REG_BINARY & REG_NONE**: Validates hexadecimal strings, filters invalid characters, and ensures an even number of characters.
+* **REG_MULTI_SZ**: Provides a multi-line text input that automatically handles null separators for easily editing string arrays.
+* **REG_SZ & REG_EXPAND_SZ**: Provides standard string validation.
+
+Changes are securely saved back to the origin `.POL` or `.JSON` file without losing any data integrity.
+
+## Copy Policy Data
+
+Using the right-click context menu, you can copy an entire selected policy row to your clipboard as a labeled, formatted text snippet. You can also dive into the **Copy Individual Items** sub-menu to pinpoint and copy specific properties of a policy.
 
 ## Merge Multiple Group Policy Files Into One
 
