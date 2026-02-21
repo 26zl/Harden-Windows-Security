@@ -138,8 +138,8 @@ jobs:
                   $JsonResponse = $Response.Content | ConvertFrom-Json
 
                   if ($JsonResponse.data.attributes.status -eq 'queued') {
-                      Write-Host "Status: $($JsonResponse.data.attributes.status). Waiting 10 more seconds..." -ForegroundColor Blue
-                      Start-Sleep -Seconds 10
+                      Write-Host "Status: $($JsonResponse.data.attributes.status). Waiting 30 more seconds..." -ForegroundColor Blue
+                      Start-Sleep -Seconds 30
                   }
               }
               until ($JsonResponse.data.attributes.status -eq 'completed')
@@ -182,7 +182,6 @@ jobs:
                           Write-Host "Error submitting comment. Status Code: $($CommentsSubmitResponse.StatusCode)`n Error: $($CommentsSubmitResponse.Content)" -ForegroundColor Red
                       }
                   }
-
                   catch {
                       Write-Host "Error submitting comment: $_" -ForegroundColor Red
                   }
@@ -217,6 +216,8 @@ jobs:
           $ReleaseFiles = Get-ChildItem -Path '.\release_assets' -File -Force
 
           foreach ($File in $ReleaseFiles) {
+              Write-Host "Waiting 60 seconds to respect VirusTotal rate limits..." -ForegroundColor Cyan
+              Start-Sleep -Seconds 60
               # Submit each file to VirusTotal - Not using comments because they might already exist there
               Get-VirusTotalReport -FilePath $File.FullName -ApiKey $VTApi
           }
