@@ -1,7 +1,7 @@
 name: Dependabot Auto-Approve and Merge
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
 
 # Elevate the default GITHUB_TOKEN permissions
@@ -12,7 +12,7 @@ permissions:
 jobs:
   approve-and-merge:
     name: Approve and Merge Dependabot PRs
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     # Ensures this workflow only runs for the official Dependabot account
     if: github.actor == 'dependabot[bot]'
