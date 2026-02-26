@@ -74,7 +74,7 @@ jobs:
 #
 
       - name: Check out the repository code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v3
 
       - name: Building And Packaging the AppControl Manager
         id: main_buildOp
@@ -815,7 +815,7 @@ jobs:
     steps:
 
       - name: Downloading all Artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v6
         with:
           path: Downloaded-Artifacts # Download all artifacts in this folder
           merge-multiple: true
@@ -824,7 +824,7 @@ jobs:
         run: ls -R Downloaded-Artifacts
 
       - name: Generating Artifact Attestation
-        uses: actions/attest-build-provenance@v4
+        uses: actions/attest-build-provenance@v2
         with:
         # subject-path: "${{ needs.build.outputs.MSIXBundle_PATH }}, ${{ needs.build.outputs.X64MSBuildLog_PATH }}, ${{ needs.build.outputs.ARM64MSBuildLog_PATH }}, ${{ needs.build.outputs.X64Symbol_PATH }}, ${{ needs.build.outputs.ARM64Symbol_PATH }}"
           subject-path: "Downloaded-Artifacts/*" # Use all the files in the artifact downloads folder
@@ -840,7 +840,7 @@ jobs:
     steps:
 
       - name: Downloading all Artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v6
         with:
           path: Downloaded-Artifacts # Download all artifacts in this folder
           merge-multiple: true

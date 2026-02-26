@@ -33,13 +33,23 @@ jobs:
             gh pr edit "$PR_URL" --add-assignee "HotCakeX"
           fi
 
-      - name: Approve PR
+      - name: Approve PR as GitHub Actions Bot
         env:
+          # Uses the default token to approve as github-actions[bot]
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
         run: |
-          echo "✅ Approving the PR..."
-          # The GITHUB_TOKEN will act on behalf of github-actions[bot] to approve the PR
+          echo "✅ Approving the PR as github-actions[bot]..."
+          gh pr review "$PR_URL" --approve
+
+      - name: Approve PR as Code Owner
+        env:
+          # We use a Personal Access Token (PAT) belonging to the Code Owner (HotCakeX) here.
+          # This ensures the approval satisfies the "require_code_owner_review" branch protection rule.
+          GH_TOKEN: ${{ secrets.HOTCAKEX_PAT }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          echo "✅ Approving the PR as Code Owner..."
           gh pr review "$PR_URL" --approve
 
       - name: Enable Auto-Merge
