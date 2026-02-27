@@ -112,7 +112,7 @@ internal sealed class ThreadSafeObservableCollection<T> : ObservableCollection<T
 	// Ensure PropertyChanged is marshalled to the UI thread.
 	protected override void OnPropertyChanged(PropertyChangedEventArgs e)
 	{
-		if (GlobalVars.AppDispatcher.HasThreadAccess)
+		if (!GlobalVars.AppDispatcher.HasThreadAccess)
 		{
 			_ = GlobalVars.AppDispatcher.TryEnqueue(() => base.OnPropertyChanged(e));
 		}
